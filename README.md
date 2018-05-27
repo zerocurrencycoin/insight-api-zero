@@ -1,26 +1,26 @@
 # Insight API
 
-A Zcash blockchain REST and web socket API service for [Bitcore Node](https://github.com/bitpay/bitcore-node).
+A Zero blockchain REST and web socket API service for [Bitcore Node](https://github.com/bitpay/bitcore-node).
 
 This is a backend-only service. If you're looking for the web frontend application, take a look at https://github.com/bitpay/insight-ui.
 
 ## Getting Started
 
 ```bashl
-npm install -g bitcore-node@latest
-bitcore-node create mynode
+npm install ProphetAlgorithms/bitcore-node-zero
+./node_modules/bitcore-node-zero/bin/bitcore-node create mynode
 cd mynode
-bitcore-node install insight-api-zcash
-bitcore-node start
+./node_modules/bitcore-node-zero/bin/bitcore-node install ProphetAlgorithms/insight-api-zero
+./node_modules/bitcore-node-zero/bin/bitcore-node start
 ```
 
-The API endpoints will be available by default at: `http://localhost:3001/insight-api/`
+The API endpoints will be available by default at: `http://localhost:3001/insight-api-zero/`
 
 ## Prerequisites
 
 - [Bitcore Node 3.x](https://github.com/bitpay/bitcore-node)
 
-**Note:** You can use an existing Zcash data directory, however `txindex`, `addressindex`, `timestampindex` and `spentindex` needs to be set to true in `zcash.conf`, as well as a few other additional fields.
+**Note:** You can use an existing Zero data directory, however `txindex`, `addressindex`, `timestampindex` and `spentindex` needs to be set to true in `zero.conf`, as well as a few other additional fields.
 
 ## Notes on Upgrading from v0.3
 
@@ -114,7 +114,7 @@ With all the configuration options available: https://github.com/bitpay/insight-
 Or disabled entirely with:
 ``` json
   "servicesConfig": {
-    "insight-api": {
+    "insight-api-zero": {
       "disableRateLimiter": true
     }
   }
@@ -125,15 +125,15 @@ Or disabled entirely with:
 
 ### Block
 ```
-  /insight-api/block/[:hash]
-  /insight-api/block/00000000a967199a2fad0877433c93df785a8d8ce062e5f9b451cd1397bdbf62
+  /insight-api-zero/block/[:hash]
+  /insight-api-zero/block/00000000a967199a2fad0877433c93df785a8d8ce062e5f9b451cd1397bdbf62
 ```
 
 ### Block Index
 Get block hash by height
 ```
-  /insight-api/block-index/[:height]
-  /insight-api/block-index/0
+  /insight-api-zero/block-index/[:height]
+  /insight-api-zero/block-index/0
 ```
 This would return:
 ```
@@ -146,8 +146,8 @@ which is the hash of the Genesis block (0 height)
 
 ### Raw Block
 ```
-  /insight-api/rawblock/[:blockHash]
-  /insight-api/rawblock/[:blockHeight]
+  /insight-api-zero/rawblock/[:blockHash]
+  /insight-api-zero/rawblock/[:blockHeight]
 ```
 
 This would return:
@@ -161,7 +161,7 @@ This would return:
 
 Get block summaries by date:
 ```
-  /insight-api/blocks?limit=3&blockDate=2016-04-22
+  /insight-api-zero/blocks?limit=3&blockDate=2016-04-22
 ```
 
 Example response:
@@ -195,31 +195,31 @@ Example response:
 
 ### Transaction
 ```
-  /insight-api/tx/[:txid]
-  /insight-api/tx/525de308971eabd941b139f46c7198b5af9479325c2395db7f2fb5ae8562556c
-  /insight-api/rawtx/[:rawid]
-  /insight-api/rawtx/525de308971eabd941b139f46c7198b5af9479325c2395db7f2fb5ae8562556c
+  /insight-api-zero/tx/[:txid]
+  /insight-api-zero/tx/525de308971eabd941b139f46c7198b5af9479325c2395db7f2fb5ae8562556c
+  /insight-api-zero/rawtx/[:rawid]
+  /insight-api-zero/rawtx/525de308971eabd941b139f46c7198b5af9479325c2395db7f2fb5ae8562556c
 ```
 
 ### Address
 ```
-  /insight-api/addr/[:addr][?noTxList=1][&from=&to=]
-  /insight-api/addr/mmvP3mTe53qxHdPqXEvdu8WdC7GfQ2vmx5?noTxList=1
-  /insight-api/addr/mmvP3mTe53qxHdPqXEvdu8WdC7GfQ2vmx5?from=1000&to=2000
+  /insight-api-zero/addr/[:addr][?noTxList=1][&from=&to=]
+  /insight-api-zero/addr/mmvP3mTe53qxHdPqXEvdu8WdC7GfQ2vmx5?noTxList=1
+  /insight-api-zero/addr/mmvP3mTe53qxHdPqXEvdu8WdC7GfQ2vmx5?from=1000&to=2000
 ```
 
 ### Address Properties
 ```
-  /insight-api/addr/[:addr]/balance
-  /insight-api/addr/[:addr]/totalReceived
-  /insight-api/addr/[:addr]/totalSent
-  /insight-api/addr/[:addr]/unconfirmedBalance
+  /insight-api-zero/addr/[:addr]/balance
+  /insight-api-zero/addr/[:addr]/totalReceived
+  /insight-api-zero/addr/[:addr]/totalSent
+  /insight-api-zero/addr/[:addr]/unconfirmedBalance
 ```
 The response contains the value in Satoshis.
 
 ### Unspent Outputs
 ```
-  /insight-api/addr/[:addr]/utxo
+  /insight-api-zero/addr/[:addr]/utxo
 ```
 Sample return:
 ```
@@ -250,13 +250,13 @@ Sample return:
 ### Unspent Outputs for Multiple Addresses
 GET method:
 ```
-  /insight-api/addrs/[:addrs]/utxo
-  /insight-api/addrs/2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f/utxo
+  /insight-api-zero/addrs/[:addrs]/utxo
+  /insight-api-zero/addrs/2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f/utxo
 ```
 
 POST method:
 ```
-  /insight-api/addrs/utxo
+  /insight-api-zero/addrs/utxo
 ```
 
 POST params:
@@ -266,25 +266,25 @@ addrs: 2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f
 
 ### Transactions by Block
 ```
-  /insight-api/txs/?block=HASH
-  /insight-api/txs/?block=00000000fa6cf7367e50ad14eb0ca4737131f256fc4c5841fd3c3f140140e6b6
+  /insight-api-zero/txs/?block=HASH
+  /insight-api-zero/txs/?block=00000000fa6cf7367e50ad14eb0ca4737131f256fc4c5841fd3c3f140140e6b6
 ```
 ### Transactions by Address
 ```
-  /insight-api/txs/?address=ADDR
-  /insight-api/txs/?address=mmhmMNfBiZZ37g1tgg2t8DDbNoEdqKVxAL
+  /insight-api-zero/txs/?address=ADDR
+  /insight-api-zero/txs/?address=mmhmMNfBiZZ37g1tgg2t8DDbNoEdqKVxAL
 ```
 
 ### Transactions for Multiple Addresses
 GET method:
 ```
-  /insight-api/addrs/[:addrs]/txs[?from=&to=]
-  /insight-api/addrs/2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f/txs?from=0&to=20
+  /insight-api-zero/addrs/[:addrs]/txs[?from=&to=]
+  /insight-api-zero/addrs/2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f/txs?from=0&to=20
 ```
 
 POST method:
 ```
-  /insight-api/addrs/txs
+  /insight-api-zero/addrs/txs
 ```
 
 POST params:
@@ -330,7 +330,7 @@ Note: if pagination params are not specified, the result is an array of transact
 ### Transaction Broadcasting
 POST method:
 ```
-  /insight-api/tx/send
+  /insight-api-zero/tx/send
 ```
 POST params:
 ```
@@ -356,17 +356,17 @@ POST response:
 
 ### Historic Blockchain Data Sync Status
 ```
-  /insight-api/sync
+  /insight-api-zero/sync
 ```
 
 ### Live Network P2P Data Sync Status
 ```
-  /insight-api/peer
+  /insight-api-zero/peer
 ```
 
-### Status of the Zcash Network
+### Status of the Zero Network
 ```
-  /insight-api/status?q=xxx
+  /insight-api-zero/status?q=xxx
 ```
 
 Where "xxx" can be:
@@ -379,7 +379,7 @@ Where "xxx" can be:
 
 ### Utility Methods
 ```
-  /insight-api/utils/estimatefee[?nbBlocks=2]
+  /insight-api-zero/utils/estimatefee[?nbBlocks=2]
 ```
 
 
@@ -409,7 +409,7 @@ Sample output:
 }
 ```
 
-`<zcashAddress>`: new transaction concerning <zcashAddress> received from network. This event is published in the `<zcashAddress>` room.
+`<zeroAddress>`: new transaction concerning <zeroAddress> received from network. This event is published in the `<zeroAddress>` room.
 
 `status`: every 1% increment on the sync task, this event will be triggered. This event is published in the `sync` room.
 

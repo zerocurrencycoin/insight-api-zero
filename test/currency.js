@@ -7,7 +7,7 @@ var CurrencyController = require('../lib/currency');
 
 describe('Currency', function() {
 
-  var bitstampData = {
+  var binanceData = {
     high: 239.44,
     last: 237.90,
     timestamp: 1443798711,
@@ -18,14 +18,14 @@ describe('Currency', function() {
     ask: 237.90
   };
 
-  it.skip('will make live request to bitstamp', function(done) {
+  it.skip('will make live request to binance', function(done) {
     var currency = new CurrencyController({});
     var req = {};
     var res = {
       jsonp: function(response) {
         response.status.should.equal(200);
-        should.exist(response.data.bitstamp);
-        (typeof response.data.bitstamp).should.equal('number');
+        should.exist(response.data.binance);
+        (typeof response.data.binance).should.equal('number');
         done();
       }
     };
@@ -34,7 +34,7 @@ describe('Currency', function() {
 
   it('will retrieve a fresh value', function(done) {
     var TestCurrencyController = proxyquire('../lib/currency', {
-      request: sinon.stub().callsArgWith(1, null, {statusCode: 200}, JSON.stringify(bitstampData))
+      request: sinon.stub().callsArgWith(1, null, {statusCode: 200}, JSON.stringify(binanceData))
     });
     var node = {
       log: {
@@ -42,14 +42,14 @@ describe('Currency', function() {
       }
     };
     var currency = new TestCurrencyController({node: node});
-    currency.bitstampRate = 220.20;
+    currency.binanceRate = 220.20;
     currency.timestamp = Date.now() - 61000 * CurrencyController.DEFAULT_CURRENCY_DELAY;
     var req = {};
     var res = {
       jsonp: function(response) {
         response.status.should.equal(200);
-        should.exist(response.data.bitstamp);
-        response.data.bitstamp.should.equal(237.90);
+        should.exist(response.data.binance);
+        response.data.binance.should.equal(237.90);
         done();
       }
     };
@@ -66,14 +66,14 @@ describe('Currency', function() {
       }
     };
     var currency = new TestCurrencyController({node: node});
-    currency.bitstampRate = 237.90;
+    currency.binanceRate = 237.90;
     currency.timestamp = Date.now() - 65000 * CurrencyController.DEFAULT_CURRENCY_DELAY;
     var req = {};
     var res = {
       jsonp: function(response) {
         response.status.should.equal(200);
-        should.exist(response.data.bitstamp);
-        response.data.bitstamp.should.equal(237.90);
+        should.exist(response.data.binance);
+        response.data.binance.should.equal(237.90);
         node.log.error.callCount.should.equal(1);
         done();
       }
@@ -92,14 +92,14 @@ describe('Currency', function() {
       }
     };
     var currency = new TestCurrencyController({node: node});
-    currency.bitstampRate = 237.90;
+    currency.binanceRate = 237.90;
     currency.timestamp = Date.now();
     var req = {};
     var res = {
       jsonp: function(response) {
         response.status.should.equal(200);
-        should.exist(response.data.bitstamp);
-        response.data.bitstamp.should.equal(237.90);
+        should.exist(response.data.binance);
+        response.data.binance.should.equal(237.90);
         request.callCount.should.equal(0);
         done();
       }

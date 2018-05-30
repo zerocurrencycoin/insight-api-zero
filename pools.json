@@ -12,5 +12,12 @@
     "searchStrings": [
       "/nodeStratum/"
     ]
+  },
+  {
+    "poolName": "Z-NOMP",
+    "url": "",
+    "searchStrings": [
+      "Z-NOMP! https://github.com/joshuayabut/z-nomp"
+    ]
   }
 ]

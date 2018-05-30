@@ -1,12 +1,5 @@
 [
   {
-    "poolName": "Bitfly",
-    "url": "https://zcash.flypool.org/",
-    "searchStrings": [
-      "/flypool/"
-    ]
-  },
-  {
     "poolName": "NaN",
     "url": "",
     "searchStrings": [
@@ -18,13 +11,6 @@
     "url": "",
     "searchStrings": [
       "/nodeStratum/"
-    ]
-  },
-  {
-    "poolName": "Zmine",
-    "url": "https://zmine.io/",
-    "searchStrings": [
-      "{ZMINE.IO}"
     ]
   }
 ]

@@ -2,7 +2,7 @@
   "name": "insight-api-zero",
   "description": "A Zero blockchain REST and web socket API service for Bitcore Node.",
   "version": "0.4.3",
-  "repository": "git://github.com/ProphetAlgorithms/insight-api-zero.git",
+  "repository": "git://github.com/zerocurrencycoin/insight-api-zero.git",
   "contributors": [
     {
       "name": "Gustavo Cortez",
@@ -42,9 +42,9 @@
     }
   ],
   "bugs": {
-    "url": "https://github.com/ProphetAlgorithms/insight-api-zero/issues"
+    "url": "https://github.com/zerocurrencycoin/insight-api-zero/issues"
   },
-  "homepage": "https://github.com/ProphetAlgorithms/insight-api-zero",
+  "homepage": "https://github.com/zerocurrencycoin/insight-api-zero",
   "license": "MIT",
   "keywords": [
     "insight",
@@ -65,8 +65,8 @@
   "bitcoreNode": "lib",
   "dependencies": {
     "async": "*",
-    "bitcore-lib-zero": "ProphetAlgorithms/bitcore-lib-zero",
-    "bitcore-message-zero": "ProphetAlgorithms/bitcore-message-zero",
+    "bitcore-lib-zero": "zerocurrencycoin/bitcore-lib-zero",
+    "bitcore-message-zero": "zerocurrencycoin/bitcore-message-zero",
     "body-parser": "^1.13.3",
     "compression": "^1.6.1",
     "lodash": "^2.4.1",

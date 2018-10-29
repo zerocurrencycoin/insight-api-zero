@@ -7,10 +7,10 @@ This is a backend-only service. If you're looking for the web frontend applicati
 ## Getting Started
 
 ```bashl
-npm install ProphetAlgorithms/bitcore-node-zero
+npm install zerocurrencycoin/bitcore-node-zero
 ./node_modules/bitcore-node-zero/bin/bitcore-node create mynode
 cd mynode
-./node_modules/bitcore-node-zero/bin/bitcore-node install ProphetAlgorithms/insight-api-zero
+./node_modules/bitcore-node-zero/bin/bitcore-node install zerocurrencycoin/insight-api-zero
 ./node_modules/bitcore-node-zero/bin/bitcore-node start
 ```
 
@@ -119,7 +119,7 @@ Or disabled entirely with:
     }
   }
   ```
-  
+
 
 ## API HTTP Endpoints
 

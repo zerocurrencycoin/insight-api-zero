@@ -65,7 +65,7 @@
   "bitcoreNode": "lib",
   "dependencies": {
     "async": "*",
-    "bitcore-lib-zero": "zerocurrencycoin/bitcore-lib-zero",
+    "bitcore-lib-zero": "zerocurrencycoin/bitcore-lib-zero#saplingroot",
     "bitcore-message-zero": "zerocurrencycoin/bitcore-message-zero",
     "body-parser": "^1.13.3",
     "compression": "^1.6.1",

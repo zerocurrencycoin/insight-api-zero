@@ -201,6 +201,15 @@ Example response:
   /insight-api-zero/rawtx/525de308971eabd941b139f46c7198b5af9479325c2395db7f2fb5ae8562556c
 ```
 
+### Sapling Blocks & Witnesses
+```
+  /insight-api-zero/saplingblocks/[:height]?blockQty=[qty]'
+  /insight-api-zero/saplingblocks/810910?blockQty=1000'
+
+  /insight-api-zero/witness/[:txid]?index=[:outputindex]
+  /insight-api-zero/witness/525de308971eabd941b139f46c7198b5af9479325c2395db7f2fb5ae8562556c?index=1
+```
+
 ### Address
 ```
   /insight-api-zero/addr/[:addr][?noTxList=1][&from=&to=]
@@ -382,6 +391,20 @@ Where "xxx" can be:
   /insight-api-zero/utils/estimatefee[?nbBlocks=2]
 ```
 
+### Current Prices at coingecko.com
+```
+  /insight-api-zero/currency
+```
+
+### Current Supply
+```
+  /insight-api-zero/supply
+```
+
+### Current Zeronode Stats
+```
+  /insight-api-zero/zeronodestats
+```
 
 ## Web Socket API
 The web socket API is served using [socket.io](http://socket.io).

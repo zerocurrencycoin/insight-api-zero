@@ -1,12 +1,27 @@
-# Insight API
+# Insight API (Zero)
 
-A Zero blockchain REST and web socket API service for [Bitcore Node](https://github.com/bitpay/bitcore-node).
+A Zero (ZER) blockchain REST and web socket API service for Bitcore Node. This is
+the data layer of the Zero Insight stack: it runs as a service of
+[`bitcore-node-zero`](https://github.com/zerocurrencycoin/bitcore-node-zero) and
+serves the [`insight-ui-zero`](https://github.com/zerocurrencycoin/insight-ui-zero)
+frontend.
 
-This is a backend-only service. If you're looking for the web frontend application, take a look at https://github.com/bitpay/insight-ui.
+This is a backend-only service. If you're looking for the web frontend
+application, see [zerocurrencycoin/insight-ui-zero](https://github.com/zerocurrencycoin/insight-ui-zero).
+
+> Source-of-record copy. This README is the corrected version staged under
+> `error/insight-api-zero/` in the Insight docs repo: Zero-accurate framing and
+> prerequisites, `zcashd` references corrected to `zerod`, dead links pruned. The
+> endpoint documentation below is preserved verbatim from the running service.
+>
+> Lineage: this is the Zero rename-fork of the Zcash Insight API
+> ([str4d/insight-api-zcash](https://github.com/str4d/insight-api-zcash)), itself
+> derived from BitPay's [bitcore-node](https://github.com/bitpay/bitcore-node).
+> Built and run under **Node.js v8.17.0**.
 
 ## Getting Started
 
-```bashl
+```bash
 npm install zerocurrencycoin/bitcore-node-zero
 ./node_modules/bitcore-node-zero/bin/bitcore-node create mynode
 cd mynode
@@ -18,9 +33,13 @@ The API endpoints will be available by default at: `http://localhost:3001/insigh
 
 ## Prerequisites
 
-- [Bitcore Node 3.x](https://github.com/bitpay/bitcore-node)
+- [bitcore-node-zero](https://github.com/zerocurrencycoin/bitcore-node-zero)
+- A synced `zerod` with the Insight indexes enabled.
 
-**Note:** You can use an existing Zero data directory, however `txindex`, `addressindex`, `timestampindex` and `spentindex` needs to be set to true in `zero.conf`, as well as a few other additional fields.
+**Note:** You can use an existing Zero data directory, however `insightexplorer`,
+`txindex`, `addressindex`, `timestampindex` and `spentindex` need to be set to
+true in `zero.conf`, as well as a few other additional fields. See
+`error/bitcore-node-zero/README.md` for the full `zero.conf` flag list.
 
 ## Notes on Upgrading from v0.3
 
@@ -43,7 +62,7 @@ The unspent outputs format now has `satoshis` and `height`:
     "vout": 1,
     "scriptPubKey": "76a91453c0307d6851aa0ce7825ba883c6bd9ad242b48688ac",
     "amount": 0.12345678,
-    "satoshis: 12345678,
+    "satoshis": 12345678,
     "confirmations": 1,
     "height": 300001
   }
@@ -69,8 +88,8 @@ There are a few changes to the `GET` endpoint for `/addr/[:address]`:
 
 Some additional general notes:
 - The transaction history for an address will be sorted in block order
-- The response for the `/sync` endpoint does not include `startTs` and `endTs` as the sync is no longer relevant as indexes are built in zcashd.
-- The endpoint for `/peer` is no longer relevant connection to zcashd is via ZMQ.
+- The response for the `/sync` endpoint does not include `startTs` and `endTs` as the sync is no longer relevant as indexes are built in zerod.
+- The endpoint for `/peer` is no longer relevant connection to zerod is via ZMQ.
 - `/tx` endpoint results will now include block height, and spentTx related fields will be set to `null` if unspent.
 - `/block` endpoint results does not include `confirmations` and will include `poolInfo`.
 
@@ -89,7 +108,7 @@ The `/tx/<txid>` endpoint JSON response will not include the following fields on
 object.
 - `spentTs`
 
-The `/status?q=getTxOutSetInfo` method has also been removed due to the query being very slow and locking zcashd.
+The `/status?q=getTxOutSetInfo` method has also been removed due to the query being very slow and locking zerod.
 
 Plug-in support for Insight API is also no longer available, as well as the endpoints:
 - `/email/retrieve`
@@ -102,7 +121,7 @@ Caching support has not yet been added in the v0.3 upgrade.
 To protect the server, insight-api has a built it query rate limiter. It can be configurable in `bitcore-node.json` with:
 ``` json
   "servicesConfig": {
-    "insight-api": {
+    "insight-api-zero": {
       "rateLimiterOptions": {
         "whitelist": ["::ffff:127.0.0.1"]
       }
@@ -249,7 +268,7 @@ Sample return:
     "vout": 1,
     "scriptPubKey": "76a91453c0307d6851aa0ce7825ba883c6bd9ad242b48688ac",
     "amount": 0.12345678,
-    "satoshis: 12345678,
+    "satoshis": 12345678,
     "confirmations": 1,
     "height": 300001
   }
